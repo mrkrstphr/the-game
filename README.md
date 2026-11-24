@@ -29,5 +29,6 @@ The production `dist/` directory can be deployed to any static host. Google Font
 - Next game: November 28, 2026 at noon Eastern, Ohio Stadium, on FOX, per [Ohio State Athletics](https://ohiostatebuckeyes.com/game-center/22225).
 - Update `data/games.js`, the static last/next matchup markup in `index.html`, and `NEXT_GAME` / the calendar timestamps in `lib.js` after the next meeting. This is a verified static snapshot, not a live scores feed.
 - Team marks are from ESPN's public team-logo CDN and belong to their respective universities. This site is not affiliated with either university or the NCAA.
+- Icons are from [Tabler Icons](https://tabler.io/icons) v3.52.0 (MIT License, Copyright (c) 2020-2026 Paweł Kuna), embedded inline as SVG.
 
 Implementation uses native HTML, CSS, and JavaScript, with Node's built-in development server, build script, and test runner. No third-party runtime or build dependencies.
