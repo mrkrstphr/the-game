@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { games } from "../data/games.js";
-import { NEXT_GAME, filterGames, getCountdown, getSeriesStats, getWinner, makeCalendarEvent } from "../lib.js";
+import { games } from "../src/data/games.js";
+import { NEXT_GAME, filterGames, getCountdown, getSeriesStats, getWinner, makeCalendarEvent } from "../src/lib.js";
 
 test("official series matches the published 62–52–6 record, with one vacated game", () => {
   assert.deepEqual(getSeriesStats(games), { meetings: 121, michigan: 62, ohio: 52, tie: 6, vacated: 1 });

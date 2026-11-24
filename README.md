@@ -4,22 +4,29 @@ An independent, responsive Michigan–Ohio State rivalry site. Oversized team ma
 
 ## Run
 
-Requires Node.js 22 or later. No package installation is needed.
+Requires Node.js 22 or later and pnpm.
 
 ```sh
-npm run dev
+pnpm install
+pnpm dev
 ```
 
-Open http://localhost:5173. To use a different port: `npm run dev -- --port 3000`.
+Open http://localhost:5177.
 
 ```sh
-npm test
-npm run build
-npm run preview
+pnpm test
+pnpm build
+pnpm preview
 ```
 
-The production `dist/` directory can be deployed to any static host. Google Fonts are optional; system fallback fonts are supplied. Team logos are served locally.
+`pnpm build` writes the production site to `dist/`. Any static host works as long as unknown paths fall back to `index.html` so client-side routes like `/matchups` load; `netlify.toml` already does this for Netlify. Google Fonts are optional; system fallback fonts are supplied. Team logos are served locally.
 
+## Pages
+
+- `/`: hero, all-time record, last and next matchups with countdown and calendar download, the last 10 meetings, and history.
+- `/matchups`: all 121 meetings with season search, result filter, and sort. Filters are mirrored in the URL (`?year=1997&result=michigan&sort=oldest`) so a filtered view can be shared.
+
+Routes are defined in `src/router.jsx`. Add a page component under `src/pages/` and register it as a child of the layout route.
 ## Records and maintenance
 
 - Results verified November 22, 2026 against [Winsipedia](https://www.winsipedia.com/games/michigan/vs/ohio-state).
@@ -27,8 +34,8 @@ The production `dist/` directory can be deployed to any static host. Google Font
 - Official win credit: Michigan 62, Ohio State 52, six ties, and one vacated outcome across 121 played meetings. The 2010 on-field score remains in the archive but is excluded from Ohio State's official wins and its winner filter.
 - 2020 was canceled, so the last 10 **meetings** cover 2015–2025.
 - Next game: November 28, 2026 at noon Eastern, Ohio Stadium, on FOX, per [Ohio State Athletics](https://ohiostatebuckeyes.com/game-center/22225).
-- Update `data/games.js`, the static last/next matchup markup in `index.html`, and `NEXT_GAME` / the calendar timestamps in `lib.js` after the next meeting. This is a verified static snapshot, not a live scores feed.
+- Update `src/data/games.js`, the last/next matchup markup in `src/components/Chapters.jsx`, and `NEXT_GAME` / the calendar timestamps in `src/lib.js` after the next meeting. This is a verified static snapshot, not a live scores feed.
 - Team marks are from ESPN's public team-logo CDN and belong to their respective universities. This site is not affiliated with either university or the NCAA.
 - Icons are from [Tabler Icons](https://tabler.io/icons) v3.52.0 (MIT License, Copyright (c) 2020-2026 Paweł Kuna), embedded inline as SVG.
 
-Implementation uses native HTML, CSS, and JavaScript, with Node's built-in development server, build script, and test runner. No third-party runtime or build dependencies.
+Built with React, React Router, and Vite. Tests use Node's built-in test runner.
