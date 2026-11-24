@@ -83,18 +83,3 @@ $("#calendar-button").addEventListener("click", () => {
   clearTimeout(toastTimeout);
   toastTimeout = setTimeout(() => { $("#toast").hidden = true; }, 5000);
 });
-
-const navLinks = [...document.querySelectorAll(".nav-link")];
-const observer = new IntersectionObserver(entries => {
-  for (const entry of entries) {
-    if (entry.isIntersecting) {
-      navLinks.forEach(link => {
-        const active = link.hash === `#${entry.target.id}`;
-        link.classList.toggle("active", active);
-        if (active) link.setAttribute("aria-current", "location");
-        else link.removeAttribute("aria-current");
-      });
-    }
-  }
-}, { rootMargin: "-10% 0px -45% 0px", threshold: 0 });
-for (const section of document.querySelectorAll("#rivalry, #matchups, #history")) observer.observe(section);
